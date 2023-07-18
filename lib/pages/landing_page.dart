@@ -46,7 +46,8 @@ class LandingPage extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.only(top: 100.0),
               child: MyButton(
-                buttonColor: Colors.black,
+                textColor: Colors.white,
+                buttonColor: buttonColor,
                 text: "Let's Ride",
                 onTap: () {
                   Navigator.of(context).push(_createRoute());

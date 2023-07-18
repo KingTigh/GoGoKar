@@ -16,7 +16,7 @@ class LoginPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: c1,
+        backgroundColor: buttonColor,
       ),
       backgroundColor: background,
       body: SafeArea(
@@ -57,6 +57,7 @@ class LoginPage extends StatelessWidget {
 
             // Sign in button
             MyButton(
+                textColor: Colors.white,
                 onTap: () {},
                 text: "Sign In              ",
                 buttonColor: Colors.black),
@@ -68,8 +69,9 @@ class LoginPage extends StatelessWidget {
               style: GoogleFonts.poppins(color: c1, fontSize: 15),
             ),
             MyButton(
+              textColor: c1,
               buttonColor: background,
-              text: "Register Now",
+              text: "                     Register Now",
               onTap: () {
                 Navigator.of(context).push(_createRoute());
               },

@@ -68,6 +68,7 @@ class RegistrationPage extends StatelessWidget {
 
             // Sign in button
             MyButton(
+                textColor: Colors.white,
                 onTap: () {},
                 text: "Register              ",
                 buttonColor: Colors.black),

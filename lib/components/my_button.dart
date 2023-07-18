@@ -1,16 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:loginpage/components/theme.dart';
 
 class MyButton extends StatelessWidget {
   final Function()? onTap;
   final String text;
   final Color buttonColor;
+  final Color textColor;
   const MyButton(
       {super.key,
       required this.onTap,
       required this.text,
-      required this.buttonColor});
+      required this.buttonColor,
+      required this.textColor});
 
   @override
   Widget build(BuildContext context) {
@@ -30,15 +31,15 @@ class MyButton extends StatelessWidget {
                   style: GoogleFonts.poppins(
                     fontWeight: FontWeight.w600,
                     fontSize: 18,
-                    color: c1,
+                    color: textColor,
                   )),
-              WidgetSpan(
+              const WidgetSpan(
                 child: Padding(
-                  padding: const EdgeInsets.only(left: 150.0),
+                  padding: EdgeInsets.only(left: 150.0),
                   child: Icon(
                     Icons.arrow_forward_rounded,
                     size: 17,
-                    color: c1,
+                    color: Colors.white,
                   ),
                 ),
               ),
