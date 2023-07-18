@@ -1,47 +1,101 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../components/theme.dart';
+import '../components/text_box.dart';
 import '../components/my_button.dart';
+import 'registeration_page.dart';
 
-class LogInPage extends StatelessWidget {
-  const LogInPage({super.key});
+class LoginPage extends StatelessWidget {
+  LoginPage({super.key});
+
+  // Text editing controllers
+  final usernameController = TextEditingController();
+  final passwordController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: background,
-        body: Column(
-          children: [
-            //Title
-            SizedBox(
-                height: 200,
-                child: Center(
-                    child: Text("GoGoKar",
-                        style: GoogleFonts.poppins(
-                            fontSize: 40,
-                            fontWeight: FontWeight.w700,
-                            color: c1)))),
+      appBar: AppBar(
+        backgroundColor: c1,
+      ),
+      backgroundColor: background,
+      body: SafeArea(
+        child: SingleChildScrollView(
+          child: Center(
+              child: Column(children: [
+            const SizedBox(height: 50),
 
-            //Logo
-            Icon(
-              Icons.shield,
-              size: 150,
-              color: c1,
+            // logo
+            const Icon(
+              Icons.lock_outlined,
+              size: 100,
             ),
 
-            //Caption
-            SizedBox(
-                height: 200,
-                child: Center(
-                  child: Text(
-                    "Share The Journey",
-                    style: GoogleFonts.poppins(fontSize: 30, color: c1),
-                  ),
-                )),
+            const SizedBox(height: 50),
 
-            //Get Started button
-            const MyButton()
-          ],
-        ));
+            // Welcome message
+            Text("Welcome back! Please Sign in Below.",
+                style: GoogleFonts.poppins(color: c1, fontSize: 18)),
+
+            // Username TextField
+            MyTextField(
+              hintText: "Username",
+              obscureText: false,
+              controller: usernameController,
+            ),
+
+            // Password Feld
+            MyTextField(
+              hintText: "Password",
+              obscureText: true,
+              controller: passwordController,
+            ),
+
+            const SizedBox(
+              height: 20,
+            ),
+
+            // Sign in button
+            MyButton(
+                onTap: () {},
+                text: "Sign In              ",
+                buttonColor: Colors.black),
+
+            // Register Option
+            const SizedBox(height: 40),
+            Text(
+              "New to GoGoKar?",
+              style: GoogleFonts.poppins(color: c1, fontSize: 15),
+            ),
+            MyButton(
+              buttonColor: background,
+              text: "Register Now",
+              onTap: () {
+                Navigator.of(context).push(_createRoute());
+              },
+            )
+          ])),
+        ),
+      ),
+    );
   }
+}
+
+// Transition to next page
+Route _createRoute() {
+  return PageRouteBuilder(
+    pageBuilder: (context, animation, secondaryAnimation) => RegistrationPage(),
+    transitionsBuilder: (context, animation, secondaryAnimation, child) {
+      const begin = Offset(0.0, 1.0);
+      const end = Offset.zero;
+      const curve = Curves.ease;
+
+      var tween = Tween(begin: begin, end: end).chain(CurveTween(curve: curve));
+
+      return SlideTransition(
+        position: animation.drive(tween),
+        child: child,
+      );
+    },
+  );
 }
